@@ -1,27 +1,33 @@
-import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {FONT} from './assets/fonts/index';
+import {StatusBar} from 'react-native';
+import FlashMessage from 'react-native-flash-message';
+import RootNavigation from './navigations/RootNavigation';
 import {COLOR} from './utils/theme/colors';
+import {FONT} from './assets/fonts';
+import {textScale} from './utils/theme/responsive';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Icon name="rocket" size={60} color="#900" />
-      <Text style={styles.tileText}>Practice UI Daily</Text>
-    </View>
+    <>
+      <StatusBar
+        translucent
+        barStyle={'light-content'}
+        backgroundColor={COLOR.transparent}
+      />
+      <RootNavigation />
+      <FlashMessage
+        position="top"
+        statusBarHeight={StatusBar.currentHeight}
+        titleStyle={{
+          fontFamily: FONT.Poppins500,
+          fontSize: textScale(16),
+          color: COLOR.white,
+        }}
+        textStyle={{
+          fontFamily: FONT.Poppins400,
+          fontSize: textScale(14),
+          color: COLOR.white,
+        }}
+      />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  tileText: {
-    fontFamily: FONT.Lato400,
-    fontSize: 20,
-    color: COLOR.approved,
-  },
-});
